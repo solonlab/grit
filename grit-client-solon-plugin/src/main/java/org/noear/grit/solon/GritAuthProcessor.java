@@ -85,7 +85,7 @@ public class GritAuthProcessor implements AuthProcessor {
             } else {
                 return GritClient.global().auth().hasUri(getSubjectId(), path);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new GritException(e);
         }
     }
@@ -112,7 +112,7 @@ public class GritAuthProcessor implements AuthProcessor {
                 return false;
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new GritException(e);
         }
     }
 
@@ -138,7 +138,7 @@ public class GritAuthProcessor implements AuthProcessor {
                 return false;
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new GritException(e);
         }
     }
 

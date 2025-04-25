@@ -87,7 +87,7 @@ public class GritAuthProcessor2 extends AuthProcessorBase {
             } else {
                 return GritClient.global().auth().hasUri(getSubjectId(), path);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new GritException(e);
         }
     }
@@ -117,8 +117,8 @@ public class GritAuthProcessor2 extends AuthProcessorBase {
                 if (ctx != null) {
                     ctx.sessionSet(sessionKey, permissionList);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new GritException(e);
             }
         }
 
@@ -150,8 +150,8 @@ public class GritAuthProcessor2 extends AuthProcessorBase {
                 if (ctx != null) {
                     ctx.sessionSet(sessionKey, roleList);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                throw new GritException(e);
             }
         }
 
