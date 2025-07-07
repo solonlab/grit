@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>grit-server-ui-durian</artifactId>
+    <name>${project.artifactId}</name>
     <packaging>jar</packaging>
 
     <dependencies>
