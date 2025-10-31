@@ -1,7 +1,7 @@
 package org.noear.grit.server.api.dso;
 
 import lombok.extern.slf4j.Slf4j;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Filter;
@@ -38,7 +38,7 @@ public class AfterHandler implements Filter {
         MDC.put("tag1", ctx.path());
 
         if (ctx.errors == null) {
-            buf.append("< Body: ").append(ONode.stringify(ctx.result));
+            buf.append("< Body: ").append(ONode.serialize(ctx.result));
             log.info("{}", buf);
         } else {
             buf.append("< Error: ").append(Utils.throwableToString(ctx.errors));

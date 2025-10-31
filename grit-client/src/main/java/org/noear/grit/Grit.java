@@ -5,6 +5,6 @@ package org.noear.grit;
  */
 public class Grit {
     public static String version() {
-        return "v2.1.0";
+        return "v2.2.0";
     }
 }

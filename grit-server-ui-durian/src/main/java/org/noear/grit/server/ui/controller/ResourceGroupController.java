@@ -102,7 +102,7 @@ public class ResourceGroupController extends BaseController {
                 return Result.failure("数据不对！");
             }
 
-            List<ResourceDo> list = entity.data.toObjectList(ResourceDo.class);
+            List<ResourceDo> list = entity.data.toBeanList(ResourceDo.class);
 
             for (ResourceDo m : list) {
                 m.resource_sid = space_id;

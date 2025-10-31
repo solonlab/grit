@@ -9,10 +9,9 @@ import org.noear.grit.server.ui.service.ResourceAdminService;
 import org.noear.grit.server.api.utils.JsondEntity;
 import org.noear.grit.server.api.utils.JsondUtils;
 import org.noear.grit.service.ResourceSchemaService;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.annotation.*;
-import org.noear.solon.data.annotation.Cache;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class ResourceSchemaServiceImpl implements ResourceSchemaService {
         ONode oNode = null;
         if (data.startsWith("{")) { //支持 json
             //space
-            oNode = ONode.loadStr(data);
+            oNode = ONode.ofJson(data);
         } else { //支持 jsond
             JsondEntity jsondEntity = JsondUtils.decode(data);
 
@@ -64,7 +63,7 @@ public class ResourceSchemaServiceImpl implements ResourceSchemaService {
             throw new IllegalArgumentException("Invalid space schema json");
         }
 
-        ResourceDo spaceD = oSpace.get(tag_meta).toObject(ResourceDo.class);
+        ResourceDo spaceD = oSpace.get(tag_meta).toBean(ResourceDo.class);
 
         spaceD.resource_sid = 0L;
         spaceD.resource_pid = 0L;
@@ -91,8 +90,8 @@ public class ResourceSchemaServiceImpl implements ResourceSchemaService {
             throw new IllegalArgumentException("Invalid space schema json");
         }
 
-        for (ONode oG1 : oGroups.ary()) {
-            ResourceDo g1 = oG1.get(tag_meta).toObject(ResourceDo.class);
+        for (ONode oG1 : oGroups.getArray()) {
+            ResourceDo g1 = oG1.get(tag_meta).toBean(ResourceDo.class);
 
             g1.resource_pid = spaceD.resource_id;
             g1.resource_sid = spaceD.resource_id;
@@ -102,7 +101,7 @@ public class ResourceSchemaServiceImpl implements ResourceSchemaService {
                 throw new IllegalArgumentException("Invalid space schema json");
             }
 
-            List<ResourceDo> engitys = oG1.get(tag_engitys).toObjectList(ResourceDo.class);
+            List<ResourceDo> engitys = oG1.get(tag_engitys).toBeanList(ResourceDo.class);
 
             for (ResourceDo e1 : engitys) {
                 e1.resource_sid = g1.resource_sid;

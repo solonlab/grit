@@ -151,7 +151,7 @@ public class ResourceEntityController extends BaseController {
                 return Result.failure("数据不对！");
             }
 
-            List<ResourceDo> list = entity.data.toObjectList(ResourceDo.class);
+            List<ResourceDo> list = entity.data.toBeanList(ResourceDo.class);
             Resource group = resourceAdminService.getResourceById(group_id);
 
 

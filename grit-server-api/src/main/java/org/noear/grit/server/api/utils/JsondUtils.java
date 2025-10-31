@@ -1,7 +1,7 @@
 package org.noear.grit.server.api.utils;
 
 import org.noear.grit.client.utils.EncryptUtils;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 import java.io.IOException;
 
@@ -18,11 +18,11 @@ public class JsondUtils {
         if (data instanceof ONode) {
             entity.data = (ONode) data;
         } else {
-            entity.data = ONode.loadObj(data);
+            entity.data = ONode.ofBean(data);
         }
 
         //序列化
-        String json = ONode.stringify(entity);
+        String json = ONode.serialize(entity);
 
         //压缩
         String gzip = GzipUtils.gZip(json);

@@ -1,7 +1,7 @@
 package org.noear.grit.server.api.utils;
 
 import org.noear.grit.client.utils.EncryptUtils;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ public class TokenUtils {
         data.put("i", subjectId);
         data.put("t", System.currentTimeMillis());
 
-        String dataJson = ONode.stringify(data);
+        String dataJson = ONode.serialize(data);
 
         //加密
         try {
@@ -34,7 +34,7 @@ public class TokenUtils {
             //解密
             String dataJson = EncryptUtils.aesDecrypt(token, key);
 
-            ONode oNode = ONode.loadStr(dataJson);
+            ONode oNode = ONode.ofJson(dataJson);
             long subjectId = oNode.get("i").getLong();
             long time = oNode.get("t").getLong();
 

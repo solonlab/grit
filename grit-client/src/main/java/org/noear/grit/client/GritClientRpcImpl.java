@@ -8,8 +8,8 @@ import org.noear.nami.Nami;
 import org.noear.nami.NamiBuilder;
 import org.noear.nami.NamiManager;
 import org.noear.nami.channel.http.HttpChannel;
-import org.noear.nami.coder.snack3.SnackDecoder;
-import org.noear.nami.coder.snack3.SnackEncoder;
+import org.noear.nami.coder.snack4.Snack4Decoder;
+import org.noear.nami.coder.snack4.Snack4Encoder;
 import org.noear.solon.core.LoadBalance;
 
 import java.sql.SQLException;
@@ -85,8 +85,8 @@ public class GritClientRpcImpl implements GritClient {
             namiBuilder.filterAdd(mi);
         }
 
-        return namiBuilder.encoder(SnackEncoder.instance)
-                .decoder(SnackDecoder.instance)
+        return namiBuilder.encoder(Snack4Encoder.instance)
+                .decoder(Snack4Decoder.instance)
                 .channel(HttpChannel.instance)
                 .headerSet("Grit-Token", gritToken)
                 .create(clz);
