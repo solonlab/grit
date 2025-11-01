@@ -10,6 +10,7 @@ import org.noear.grit.server.ui.utils.ResourceSpaceCookie;
 import org.noear.grit.server.ui.service.ResourceAdminService;
 import org.noear.grit.server.api.utils.JsondEntity;
 import org.noear.grit.server.api.utils.JsondUtils;
+import org.noear.snack4.codec.TypeRef;
 import org.noear.solon.annotation.Controller;
 import org.noear.solon.annotation.Inject;
 import org.noear.solon.annotation.Mapping;
@@ -151,7 +152,7 @@ public class ResourceEntityController extends BaseController {
                 return Result.failure("数据不对！");
             }
 
-            List<ResourceDo> list = entity.data.toBeanList(ResourceDo.class);
+            List<ResourceDo> list = entity.data.toBean(new TypeRef<List<ResourceDo>>(){});
             Resource group = resourceAdminService.getResourceById(group_id);
 
 

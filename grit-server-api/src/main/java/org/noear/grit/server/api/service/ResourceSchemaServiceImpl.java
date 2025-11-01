@@ -10,6 +10,7 @@ import org.noear.grit.server.api.utils.JsondEntity;
 import org.noear.grit.server.api.utils.JsondUtils;
 import org.noear.grit.service.ResourceSchemaService;
 import org.noear.snack4.ONode;
+import org.noear.snack4.codec.TypeRef;
 import org.noear.solon.Utils;
 import org.noear.solon.annotation.*;
 
@@ -101,7 +102,7 @@ public class ResourceSchemaServiceImpl implements ResourceSchemaService {
                 throw new IllegalArgumentException("Invalid space schema json");
             }
 
-            List<ResourceDo> engitys = oG1.get(tag_engitys).toBeanList(ResourceDo.class);
+            List<ResourceDo> engitys = oG1.get(tag_engitys).toBean(new TypeRef<List<ResourceDo>>() {});
 
             for (ResourceDo e1 : engitys) {
                 e1.resource_sid = g1.resource_sid;

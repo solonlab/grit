@@ -9,6 +9,7 @@ import org.noear.grit.model.domain.ResourceGroup;
 import org.noear.grit.model.domain.ResourceSpace;
 import org.noear.grit.server.ui.utils.ResourceSpaceCookie;
 import org.noear.grit.server.ui.service.ResourceAdminService;
+import org.noear.snack4.codec.TypeRef;
 import org.noear.solon.annotation.Controller;
 import org.noear.solon.annotation.Inject;
 import org.noear.solon.annotation.Mapping;
@@ -102,7 +103,7 @@ public class ResourceGroupController extends BaseController {
                 return Result.failure("数据不对！");
             }
 
-            List<ResourceDo> list = entity.data.toBeanList(ResourceDo.class);
+            List<ResourceDo> list = entity.data.toBean(new TypeRef<List<ResourceDo>>() {});
 
             for (ResourceDo m : list) {
                 m.resource_sid = space_id;
